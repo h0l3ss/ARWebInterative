@@ -17,7 +17,7 @@
     <!-- Marcador para rastreamento -->
     <a-marker type="pattern" url="AR/pattern-Untitled (4).patt">
       <!-- Vídeo MP4 -->
-      <a-video src="#video" width="4" height="2.25" position="0 0.1 0"></a-video>
+      <a-video src="#video" width="4" height="2.25" position="0 0.1 0" rotation="-90 0 0"></a-video>
     </a-marker>
     <!-- Câmera para visualizar a cena -->
     <a-entity camera></a-entity>
@@ -25,6 +25,22 @@
     <!-- Definição do vídeo -->
     <video id="video" src="AR/IMG_1272.MP4" autoplay loop playsinline></video>
   </a-scene>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('video');
+      // Força o vídeo a tocar com som
+      video.muted = false;
+      video.volume = 1.0;
+
+      // Para garantir que o vídeo toque, mesmo em dispositivos móveis que bloqueiam a reprodução automática, adiciona um evento de toque
+      document.body.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
