@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mensagem para Rotacionar o Dispositivo</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    #rotateMessage {
+      display: block;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mensagem para rotacionar o dispositivo -->
+  <div id="rotateMessage">
+    <p>Por favor, gire o dispositivo para a orientação horizontal para visualizar a realidade aumentada.</p>
+  </div>
+
+  <script>
+    // Função para verificar a orientação e redirecionar para a página de Experiencia quando estiver horizontal
+    function checkOrientationAndRedirect() {
+      if (window.innerWidth > window.innerHeight) {
+        // Se a largura for maior que a altura, o dispositivo está na orientação horizontal
+        window.location.href = 'Experiencia.html'; // Redireciona para a página de Experiencia
+      } else {
+        // Se não, o dispositivo está na orientação vertical, manter mensagem visível
+        document.getElementById('rotateMessage').style.display = 'block';
+      }
+    }
+
+    // Verifica a orientação inicial ao carregar a página
+    checkOrientationAndRedirect();
+
+    // Verifica a orientação ao redimensionar a janela
+    window.addEventListener('resize', checkOrientationAndRedirect);
+
+    // Verifica a orientação ao mudar a orientação do dispositivo
+    window.addEventListener('orientationchange', checkOrientationAndRedirect);
+  </script>
+
+</body>
+</html>
